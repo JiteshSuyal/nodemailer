@@ -1,0 +1,43 @@
+service: ILNBackend
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  # memorySize: 128
+  # timeout: 10
+  stage: dev
+  region: ap-south-1
+  cors: true
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /user/sign-in-google
+          method: POST
+          cors: true
+      - http:
+          path: /user/signUp
+          method: POST
+          cors: true
+      - http:
+          path: /user/signIn
+          method: POST
+          cors: true
+      - http:
+          path: /user/verifyUser
+          method: POST
+          cors: true
+      - http:
+          path: /user/resetPassword
+          method: POST
+          cors: true
+      - http:
+          path: /user/saveResetPassword
+          method: POST
+          cors: true
